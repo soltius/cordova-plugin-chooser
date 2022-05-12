@@ -43,7 +43,11 @@ class Chooser : CDVPlugin {
 			options: [],
 			error: &error
 		) { newURL in
-			let maybeData = try? Data(contentsOf: newURL, options: [])
+
+            let maybeData = try? Data(count: 8)
+            if includeData {
+                let maybeData = try? Data(contentsOf: newURL, options: [])
+            }
 
 			guard let data = maybeData else {
 				self.sendError("Failed to fetch data.")
